@@ -1,26 +1,27 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { addTodo } from '../Actions';
+import { Form, Button, Container } from 'semantic-ui-react';
 
 const AddTodo = ({dispatch}) => {
     let input;
     return(
-        <div>
-            <form
+        <Container>
+            <Form
                 onSubmit={e => {
-                        e.preventDefault();
-                        if(!input.value.trim()){
-                            return
-                        }
-                        dispatch(addTodo(input.value));
-                        input.value = '';
+                    e.preventDefault();
+                    if (!input.value.trim()) {
+                        return
                     }
+                    dispatch(addTodo(input.value));
+                    input.value = '';
                 }
-            >
-                <input ref={node => {input = node}}/>
-                <button type='submit'>Add Todo</button>
-            </form>
-        </div>
+                }
+                style={{ display: 'inline' }}>
+                <Form.Input ref={node => { input = node }} />
+                <Button inverted color='purple' type='submit'>Add Todo</Button>
+            </Form>
+        </Container>
     );
 }
 export default connect()(AddTodo);
